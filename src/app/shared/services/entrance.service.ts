@@ -7,7 +7,8 @@ import {Entrance} from '../../entities/entrance.entity';
 export class EntranceService {
 
   // private addressUrl = 'http://10.0.0.18:3000/entrances';
-  private addressUrl = 'http://192.168.1.39:3000/entrances';
+  // private addressUrl = 'http://192.168.1.39:3000/entrances';
+  private addressUrl = 'http://93.95.97.110:3000/entrances';
   // private addressUrl = 'https://access-book.firebaseio.com/entrances';
 
   constructor(

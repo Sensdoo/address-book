@@ -8,7 +8,8 @@ import { Street } from '../../entities/street.entity';
 export class StreetService {
 
   // private streetUrl = 'http://10.0.0.18:3000/streets';
-  private streetUrl = 'http://192.168.1.39:3000/streets';
+  // private streetUrl = 'http://192.168.1.39:3000/streets';
+  private streetUrl = 'http://93.95.97.110:3000/streets';
   // private streetUrl = 'http://192.168.1.39:3000/streets';
 
   constructor(private http: HttpClient) {}
