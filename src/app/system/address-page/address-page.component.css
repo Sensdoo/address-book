@@ -1,0 +1,55 @@
+.glyph-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+table {
+  width: 100%;
+}
+
+.td-1 {
+  width: 16%;
+  font-size: .75rem;
+}
+
+
+.td-2 {
+  width: 68%;
+}
+
+.td-3 {
+  width: 82%;
+  font-size: .5rem;
+  text-align: right;
+}
+
+.block {
+  border: 1px solid #cdcdcd;
+  height: 27px;
+  overflow: hidden;
+  padding: .2rem .5rem;
+  font-size: .8rem;
+}
+
+.block:hover {
+  height: auto;
+  cursor: pointer;
+}
+
+.btn-xs {
+  padding: 0.15rem 0.25rem;
+  font-size: 0.65rem;
+  border-radius: 0.2rem;
+}
+
+.danger {
+  background: red;
+}
+
+.primary {
+  background: #5095ff;
+}
+
+.table-font-size {
+	font-size: 0.5rem
+}

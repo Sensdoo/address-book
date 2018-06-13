@@ -1,0 +1,46 @@
+<div
+  class="alert alert-{{ type }}"
+  *ngIf="message"
+>
+  {{ message }}
+</div>
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    style="padding: 0; margin: 0"
+    *ngFor="let e of entrances"
+  >
+    <table class="table-borderless table-sm">
+      <tbody>
+        <tr>
+          <td class="td-1 align-top">
+            <span class="badge badge-secondary"
+                  style="font-size: 1.1rem"
+            >
+              {{ e.entranceNumber }}
+            </span>
+          </td>
+          <td class="td-2">
+            <div class="block" >
+              {{ e.description }}
+            </div>
+          </td>
+          <td class="td-1 align-top">
+            <button class="btn btn-xs primary">Изменить</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-1"><img src="../../../assets/svgs/si-glyph-key-2.svg" class="glyph-icon"/>{{ e.domruKey }}</td>
+          <td class="td-3">
+            редактировал: {{ e.lastUpdate }}, {{ e.edit }}
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  </li>
+  <li>
+    <div *ngIf="user['role'] === 'admin'">
+      <button class="btn btn-primary btn-block" (click)="addEntrance()" style="margin-top: 1rem">Добавить подъезд</button>
+    </div>
+  </li>
+</ul>

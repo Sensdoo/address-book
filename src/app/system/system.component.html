@@ -1,0 +1,24 @@
+<ul class="nav nav-tabs" style="margin-bottom: 1rem">
+  <li class="nav-item"><a class="nav-link" routerLink="/search-form">На главную</a></li>
+  <li class="nav-item" style="font-size: .7rem; padding-top: .9rem; margin-left: 8rem">
+    <div class="dropdown">
+      <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ user['name'] }}
+      </div>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="font-size: .7rem;">
+        <button
+          class="dropdown-item"
+          style="padding-left: 3.6rem"
+          (click)="logout()"
+        >Выйти</button>
+      </div>
+    </div>
+  </li>
+  <!--<li class="nav-item"><a href="">Выйти</a></li>-->
+</ul>
+
+<router-outlet></router-outlet>
+<!--<button class="btn btn-secondary" (click)="back()" style="margin-top: 1rem; padding: 0 1rem">Назад</button>-->
+<!--<button class="btn btn-secondary" (click)="logout()" style="margin-top: 1rem; padding: 0 1rem">Выйти</button>-->
+
+

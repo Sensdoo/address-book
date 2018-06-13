@@ -1,0 +1,92 @@
+<h3 style="text-align: center">Добавление (редактирование) подъезда</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group" style="margin-top: 1rem">
+    <label for="edit">Добавил/Отредактировал</label>
+    <input
+      type="text"
+      class="form-control"
+      id="edit"
+      formControlName="edit"
+      disabled
+    >
+  </div>
+  <div class="form-group">
+    <label for="addressId">ID адреса</label>
+    <input
+      type="number"
+      class="form-control"
+      id="addressId"
+      formControlName="addressId"
+      disabled
+    >
+  </div>
+  <div class="form-group">
+    <label for="description">Доступ</label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      placeholder="Описание"
+      formControlName="description"
+    >
+  </div>
+  <div class="form-group">
+    <label for="domruKey">Номер ключа</label>
+    <input
+      type="number"
+      class="form-control"
+      id="domruKey"
+      placeholder="Описание"
+      formControlName="domruKey"
+    >
+  </div>
+  <div class="form-group">
+    <label for="lastUpdate">Дата</label>
+    <input
+      type="date"
+      class="form-control"
+      id="lastUpdate"
+      formControlName="lastUpdate"
+    >
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('entranceNumber').invalid && form.get('entranceNumber').touched}"
+  >
+    <label for="entranceNumber">Номер подъезда</label>
+    <input
+      type="number"
+      class="form-control"
+      id="entranceNumber"
+      formControlName="entranceNumber"
+      (keyup)="onChange()"
+    >
+    <div
+      class="alert alert-danger"
+      *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
+    >
+      Укажите номер парадной
+    </div>
+    <div
+      class="alert alert-{{ type }}"
+      *ngIf="message"
+    >
+      {{message}}
+    </div>
+  </div>
+  <div class="form-group form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="access"
+      formControlName="access"
+    >
+    <label class="form-check-label" for="access">Есть доступ?</label>
+  </div>
+  <button
+    class="btn btn-primary btn-group"
+    [disabled]="form.invalid || message"
+  >
+    Добавить
+  </button>
+</form>

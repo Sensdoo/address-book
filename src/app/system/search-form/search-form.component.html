@@ -1,0 +1,88 @@
+
+<h2 class="text-center" style="padding-top: 2rem">Форма поиска</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="alert alert-{{type}}"
+    *ngIf="message"
+  >
+    {{ message }}
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('streetId').invalid && form.get('streetId').touched}"
+  >
+  	<label for="street">Улица:</label>
+  	<select
+  	  class="form-control"
+  	  id="street"
+  	  formControlName="streetId"
+  	>
+  	  <option
+  	    *ngFor="let street of streets"
+  	    value="{{ street.id }}">{{ street.name }}</option>
+	</select>
+	<div
+	  class="alert alert-danger"
+	  *ngIf="form.get('streetId').invalid && form.get('streetId').touched"
+	>
+	  Улица не выбрана
+	</div>
+  </div>
+
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('house').invalid && form.get('house').touched}"
+  >
+    <label for="house">Дом:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="house"
+      placeholder="Введите номер дома"
+      formControlName="house"
+    >
+      <div
+        class="alert alert-danger"
+        *ngIf="form.get('house').invalid && form.get('house').touched"
+       >
+      	Номер дома не указан
+      </div>
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('building').invalid && form.get('building').touched}"
+  >
+    <label for="building">Корпус:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="building"
+      placeholder="Введите номер корпуса"
+      formControlName="building">
+      <div
+        class="alert alert-danger"
+        *ngIf="form.get('building').invalid && form.get('building').touched"
+      >
+      	Корпус дома не указан
+      </div>
+  </div>
+  <div
+    class="form-group"
+  >
+    <label for="entrance">Подъезд (не обязательное поле):</label>
+    <input
+      type="number"
+      class="form-control"
+      id="entrance"
+      placeholder="Введите номер подъезда"
+      formControlName="entrance"
+    >
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary form-control"
+    [disabled]="form.invalid"
+  >Найти</button>
+</form>
+
