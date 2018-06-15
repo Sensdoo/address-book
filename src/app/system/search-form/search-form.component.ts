@@ -34,7 +34,7 @@ export class SearchFormComponent implements OnInit {
     this.form = new FormGroup({
       streetId: new FormControl(null, [Validators.required]),
       house: new FormControl(null, [Validators.required]),
-      building: new FormControl(null, [Validators.required]),
+      building: new FormControl(1, [Validators.required]),
       entrance: new FormControl({value: '', disabled: true}, [])
     });
   }

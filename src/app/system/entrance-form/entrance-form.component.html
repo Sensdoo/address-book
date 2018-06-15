@@ -7,7 +7,7 @@
       class="form-control"
       id="edit"
       formControlName="edit"
-      disabled
+      [attr.disabled]="true"
     >
   </div>
   <div class="form-group">
@@ -17,8 +17,44 @@
       class="form-control"
       id="addressId"
       formControlName="addressId"
-      disabled
+      [attr.disabled]="true"
     >
+  </div>
+  <div class="form-group">
+    <label for="lastUpdate">Дата</label>
+    <input
+      type="date"
+      class="form-control"
+      id="lastUpdate"
+      formControlName="lastUpdate"
+      [attr.disabled]="true"
+    >
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('entranceNumber').invalid && form.get('entranceNumber').touched}"
+  >
+    <label for="entranceNumber">Номер подъезда</label>
+    <input
+      type="number"
+      class="form-control"
+      id="entranceNumber"
+      formControlName="entranceNumber"
+      [attr.disabled]="isDisabled == true? true: null"
+      (keyup)="onChange()"
+    >
+    <div
+      class="alert alert-danger"
+      *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
+    >
+      Укажите номер парадной
+    </div>
+    <div
+      class="alert alert-{{ type }}"
+      *ngIf="message"
+    >
+      {{message}}
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Доступ</label>
@@ -40,40 +76,6 @@
       formControlName="domruKey"
     >
   </div>
-  <div class="form-group">
-    <label for="lastUpdate">Дата</label>
-    <input
-      type="date"
-      class="form-control"
-      id="lastUpdate"
-      formControlName="lastUpdate"
-    >
-  </div>
-  <div
-    class="form-group"
-    [ngClass]="{'has-error': form.get('entranceNumber').invalid && form.get('entranceNumber').touched}"
-  >
-    <label for="entranceNumber">Номер подъезда</label>
-    <input
-      type="number"
-      class="form-control"
-      id="entranceNumber"
-      formControlName="entranceNumber"
-      (keyup)="onChange()"
-    >
-    <div
-      class="alert alert-danger"
-      *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
-    >
-      Укажите номер парадной
-    </div>
-    <div
-      class="alert alert-{{ type }}"
-      *ngIf="message"
-    >
-      {{message}}
-    </div>
-  </div>
   <div class="form-group form-check">
     <input
       type="checkbox"
@@ -83,10 +85,19 @@
     >
     <label class="form-check-label" for="access">Есть доступ?</label>
   </div>
+  <div class="form-group">
+    <input
+      type="number"
+      class="form-control"
+      id="id"
+      formControlName="id"
+      hidden
+    >
+  </div>
   <button
     class="btn btn-primary btn-group"
     [disabled]="form.invalid || message"
   >
-    Добавить
+    Выполнить
   </button>
 </form>

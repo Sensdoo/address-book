@@ -13,6 +13,8 @@ import {LoginService} from './shared/services/login.service';
 import {AuthService} from './shared/services/auth.service';
 import {EntranceService} from './shared/services/entrance.service';
 import {AppGuard} from './shared/services/app-guard.service';
+import {ApiUrlService} from './shared/services/api-url.service';
+import {EntranceStorageService} from './shared/services/entrance-storage.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {AppGuard} from './shared/services/app-guard.service';
     LoginService,
     AuthService,
     EntranceService,
-    AppGuard
+    AppGuard,
+    ApiUrlService,
+    EntranceStorageService
   ],
   bootstrap: [AppComponent]
 })

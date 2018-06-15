@@ -1150,33 +1150,33 @@
     },
     {
       "edit": "Шабанов М.",
-      "description": "ящик 5 этаж, ключ от двери у диспетчера коммуны 61 или подвал?",
-      "domruKey": 0,
-      "lastUpdate": "2018-06-13",
-      "entranceNumber": 3,
-      "access": null,
-      "addressId": 1,
-      "id": 15
-    },
-    {
-      "edit": "Шабанов М.",
       "description": "нет данных",
       "domruKey": 0,
-      "lastUpdate": "2018-06-13",
+      "lastUpdate": "2018-06-15",
       "entranceNumber": 4,
-      "access": null,
+      "access": false,
       "addressId": 1,
       "id": 16
     },
     {
       "edit": "Шабанов М.",
-      "description": "Ящик в подвале",
+      "description": "ящик 5 этаж, ключ от двери у диспетчера коммуны 61 или подвал?",
       "domruKey": 0,
-      "lastUpdate": "2018-06-13",
-      "entranceNumber": 5,
+      "lastUpdate": "2018-06-15",
+      "entranceNumber": 3,
       "access": null,
       "addressId": 1,
       "id": 17
+    },
+    {
+      "edit": "Шабанов М.",
+      "description": "Ящик в подвале",
+      "domruKey": 0,
+      "lastUpdate": "2018-06-15",
+      "entranceNumber": 5,
+      "access": null,
+      "addressId": 1,
+      "id": 18
     }
   ],
   "users": [
@@ -1199,6 +1199,13 @@
       "email": "shabanova_a@hotmail.com",
       "password": "271be9f9",
       "name": "Наська",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "email": "qq@qq.qq",
+      "password": "qqq",
+      "name": "Test",
       "role": "user"
     }
   ]

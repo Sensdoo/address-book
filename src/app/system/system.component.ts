@@ -22,7 +22,6 @@ export class SystemComponent implements OnInit {
 
 	ngOnInit() {
 	  this.user = JSON.parse(window.localStorage.getItem('user'));
-	  console.log(this.user);
   }
 
   logout() {

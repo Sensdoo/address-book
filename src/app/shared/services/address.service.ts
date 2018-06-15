@@ -4,24 +4,27 @@ import { Observable } from 'rxjs/Observable';
 
 import { Address } from '../../entities/address.entity';
 import { Entrance } from '../../entities/entrance.entity';
+import {ApiUrlService} from './api-url.service';
 
 @Injectable()
 export class AddressService {
 
   // private addressUrl = 'http://10.0.0.18:3000/addresses';
   // private addressUrl = 'http://192.168.1.39:3000/addresses/';
-  private addressUrl = 'http://93.95.97.110:3000/addresses/';
+  private addition = 'addresses/';
   // private addressUrl = 'https://access-book.firebaseio.com/addresses/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiUrlService) {}
 
   getAddressId(streetId: string, house: string, building: string): Observable<Address[]> {
-  	return this.http.get<Address[]>(this.addressUrl, {
-  	  params: new HttpParams().append('streetId', streetId).append('house', house).append('building', building)
-  	});
+    const params = new HttpParams()
+      .append('streetId', streetId)
+      .append('house', house)
+      .append('building', building);
+    return this.api.get(this.addition, params);
   }
 
   getAllEntrancesByAddressId(id: number): Observable<Entrance[]> {
-    return this.http.get<Entrance[]>(this.addressUrl + id + '/entrances');
+    return this.api.get( this.addition + id + '/entrances');
   }
 }

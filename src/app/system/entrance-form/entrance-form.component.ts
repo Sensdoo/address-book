@@ -6,6 +6,7 @@ import {Entrance} from '../../entities/entrance.entity';
 import {Message} from '../../entities/message.entity';
 import {text} from '@angular/core/src/render3/instructions';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {EntranceStorageService} from '../../shared/services/entrance-storage.service';
 
 @Component({
   selector: 'app-entrance-form',
@@ -20,15 +21,19 @@ export class EntranceFormComponent implements OnInit {
   type = '';
   addressId: number;
   date = new Date().toISOString().slice(0, -14);
+  entrance: Entrance;
+  isDisabled = false;
 
   constructor(
     private entranceService: EntranceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private entranceStorage: EntranceStorageService
   ) { }
 
   ngOnInit() {
     this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.entrance = this.entranceStorage.getEntrance();
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['addressId']) {
@@ -36,44 +41,73 @@ export class EntranceFormComponent implements OnInit {
       }
     });
 
-    this.form = new FormGroup({
-      edit: new FormControl(this.user['name'], []),
-      description: new FormControl(null, []),
-      domruKey: new FormControl(0, []),
-      lastUpdate: new FormControl(this.date, []),
-      entranceNumber: new FormControl(null, [Validators.required]),
-      addressId: new FormControl(this.addressId, []),
-      access: new FormControl(null, [])
-    });
+    if (this.entrance) {
+      this.isDisabled = true;
+      this.form = new FormGroup({
+        edit: new FormControl(this.user['name'], []),
+        description: new FormControl(this.entrance['description'], []),
+        domruKey: new FormControl(this.entrance['domruKey'], []),
+        lastUpdate: new FormControl(this.date, []),
+        entranceNumber: new FormControl(this.entrance['entranceNumber'], [Validators.required]),
+        addressId: new FormControl(this.addressId, []),
+        access: new FormControl(this.entrance['access'], []),
+        id: new FormControl(this.entrance['id'], [])
+      });
+    } else {
+      this.isDisabled = false;
+      this.form = new FormGroup({
+        edit: new FormControl(this.user['name'], []),
+        description: new FormControl(null, []),
+        domruKey: new FormControl(0, []),
+        lastUpdate: new FormControl(this.date, []),
+        entranceNumber: new FormControl(null, [Validators.required]),
+        addressId: new FormControl(this.addressId, []),
+        access: new FormControl(null, []),
+        id: new FormControl(null, [])
+      });
+    }
   }
 
   onSubmit() {
-    const {domruKey, edit, description, lastUpdate, entranceNumber, access, addressId} = this.form.value;
-    // const newEntrance = new Entrance(domruKey, edit, description, lastUpdate, entranceNumber, access);
-    // console.log(edit, description, domruKey, lastUpdate, entranceNumber, access);
-    this.entranceService.addEntrance({edit, description, domruKey, lastUpdate, entranceNumber, access, addressId} as Entrance)
-      .subscribe((entrance: Entrance) => {
-        this.router.navigate(['/address-page'], {
-          queryParams: {
-            'addressId': this.addressId,
-            'successfully': true
-          }
+    const {domruKey, edit, description, lastUpdate, entranceNumber, access, addressId, id} = this.form.value;
+    if (id) {
+      this.entranceService.editEntrance({edit, description, domruKey, lastUpdate, entranceNumber, access, addressId, id} as Entrance)
+        .subscribe((entrance: Entrance) => {
+          this.router.navigate(['/address-page'], {
+            queryParams: {
+              'addressId': this.addressId,
+              'successfully': true
+            }
+          });
         });
-      });
+    } else {
+      this.entranceService.addEntrance({edit, description, domruKey, lastUpdate, entranceNumber, access, addressId} as Entrance)
+        .subscribe((entrance: Entrance) => {
+          this.router.navigate(['/address-page'], {
+            queryParams: {
+              'addressId': this.addressId,
+              'successfully': true
+            }
+          });
+        });
+    }
+
   }
 
   onChange() {
-
-    console.log(this.form);
-    this.entranceService.getEntrance(this.form.value['entranceNumber'], this.addressId)
-      .subscribe((entrances: Entrance[]) => {
-        if (entrances.length) {
-          this.showMessage('danger', 'Указанный подъезд уже существует');
-        } else {
-          this.message = '';
-          this.type = '';
-        }
-      });
+    if (this.form.value['entranceNumber'] > 0) {
+      this.entranceService.getEntrance(this.form.value['entranceNumber'], this.addressId)
+        .subscribe((entrances: Entrance[]) => {
+          if (entrances.length) {
+            this.showMessage('danger', 'Указанный подъезд уже существует');
+          } else {
+            this.message = '';
+            this.type = '';
+          }
+        });
+    } else {
+      this.showMessage('danger', 'Недопустимое значение');
+    }
   }
 
   private showMessage(type: string, message: string) {
