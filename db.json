@@ -1109,26 +1109,6 @@
       "addressId": 30
     },
     {
-      "edit": "Овчинников А.",
-      "description": "dfdfdf",
-      "domruKey": 0,
-      "lastUpdate": "2018-06-13",
-      "entranceNumber": 1,
-      "access": null,
-      "addressId": 15,
-      "id": 11
-    },
-    {
-      "edit": "Овчинников А.",
-      "description": "Cujfuf",
-      "domruKey": 0,
-      "lastUpdate": "2018-06-13",
-      "entranceNumber": 2,
-      "access": true,
-      "addressId": 15,
-      "id": 12
-    },
-    {
       "edit": "Шабанов М.",
       "description": "Ящик в подвале",
       "domruKey": 0,
@@ -1174,7 +1154,7 @@
       "domruKey": 0,
       "lastUpdate": "2018-06-15",
       "entranceNumber": 5,
-      "access": null,
+      "access": false,
       "addressId": 1,
       "id": 18
     }
