@@ -9,7 +9,7 @@ export class LoginService {
 
   // private addressUrl = 'http://10.0.0.18:3000/users';
   // private addressUrl = 'http://192.168.1.39:3000/users';
-  private addition = 'users/';
+  private addition = '/users';
   // private addressUrl = 'https://access-book.firebaseio.com/users';
 
   constructor(
