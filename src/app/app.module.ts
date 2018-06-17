@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import {EntranceStorageService} from './shared/services/entrance-storage.service
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFontAwesomeModule,
     AppRoutingModule,
     SystemModule,
     AuthModule

@@ -45,7 +45,7 @@ export class EntranceFormComponent implements OnInit {
       this.isDisabled = true;
       this.form = new FormGroup({
         edit: new FormControl(this.user['name'], []),
-        description: new FormControl(this.entrance['description'], []),
+        description: new FormControl(this.entrance['description'], [Validators.maxLength(125)]),
         domruKey: new FormControl(this.entrance['domruKey'], []),
         lastUpdate: new FormControl(this.date, []),
         entranceNumber: new FormControl(this.entrance['entranceNumber'], [Validators.required]),
@@ -57,7 +57,7 @@ export class EntranceFormComponent implements OnInit {
       this.isDisabled = false;
       this.form = new FormGroup({
         edit: new FormControl(this.user['name'], []),
-        description: new FormControl(null, []),
+        description: new FormControl(null, [Validators.maxLength(125)]),
         domruKey: new FormControl(0, []),
         lastUpdate: new FormControl(this.date, []),
         entranceNumber: new FormControl(null, [Validators.required]),
@@ -91,10 +91,10 @@ export class EntranceFormComponent implements OnInit {
           });
         });
     }
-
+    console.log(this.form);
   }
 
-  onChange() {
+  onChangeEntranceField() {
     if (this.form.value['entranceNumber'] > 0) {
       this.entranceService.getEntrance(this.form.value['entranceNumber'], this.addressId)
         .subscribe((entrances: Entrance[]) => {

@@ -1,0 +1,9 @@
+<ul
+  *ngIf="street"
+>
+  <li
+    *ngFor="let address of addresses"
+  >
+    <a href="#">{{ street['name'] }} д.{{ address['house'] }},  корп.{{ address['building'] }}</a>
+  </li>
+</ul>

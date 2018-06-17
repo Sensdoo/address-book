@@ -1,5 +1,79 @@
-<h3 style="text-align: center">Добавление (редактирование) подъезда</h3>
+<h5 style="text-align: center">Добавление (редактирование) подъезда</h5>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('entranceNumber').invalid && form.get('entranceNumber').touched}"
+  >
+    <label for="entranceNumber">Номер подъезда</label>
+    <input
+      type="number"
+      class="form-control"
+      id="entranceNumber"
+      formControlName="entranceNumber"
+      placeholder="Введите номер подъезда"
+      [attr.disabled]="isDisabled == true? true: null"
+      (keyup)="onChangeEntranceField()"
+    >
+    <div
+      class="alert alert-danger"
+      *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
+    >
+      Укажите номер парадной
+    </div>
+    <div
+      class="alert alert-{{ type }}"
+      *ngIf="message"
+    >
+      {{message}}
+    </div>
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('description').invalid}"
+  >
+    <label for="description">Доступ</label>
+    <textarea
+      rows="2"
+      class="form-control"
+      id="description"
+      placeholder="Введите информацию по доступу(макс.: 125 символов)"
+      formControlName="description"
+    ></textarea>
+    <div
+      class="alert alert-danger"
+      *ngIf="form.get('description').invalid"
+    >
+      Превышен лимит символов
+    </div>
+  </div>
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('domruKey').invalid}"
+  >
+    <label for="domruKey">Номер ключа</label>
+    <input
+      type="number"
+      class="form-control"
+      id="domruKey"
+      placeholder="Введите номер ключа"
+      formControlName="domruKey"
+    >
+    <div
+      class="alert alert-danger"
+      *ngIf="form.get('domruKey').invalid"
+    >
+      Превышен лимит символов
+    </div>
+  </div>
+  <div class="form-group form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="access"
+      formControlName="access"
+    >
+    <label class="form-check-label" for="access">Есть доступ?</label>
+  </div>
   <div class="form-group" style="margin-top: 1rem">
     <label for="edit">Добавил/Отредактировал</label>
     <input
@@ -30,61 +104,7 @@
       [attr.disabled]="true"
     >
   </div>
-  <div
-    class="form-group"
-    [ngClass]="{'has-error': form.get('entranceNumber').invalid && form.get('entranceNumber').touched}"
-  >
-    <label for="entranceNumber">Номер подъезда</label>
-    <input
-      type="number"
-      class="form-control"
-      id="entranceNumber"
-      formControlName="entranceNumber"
-      [attr.disabled]="isDisabled == true? true: null"
-      (keyup)="onChange()"
-    >
-    <div
-      class="alert alert-danger"
-      *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
-    >
-      Укажите номер парадной
-    </div>
-    <div
-      class="alert alert-{{ type }}"
-      *ngIf="message"
-    >
-      {{message}}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="description">Доступ</label>
-    <input
-      type="text"
-      class="form-control"
-      id="description"
-      placeholder="Описание"
-      formControlName="description"
-    >
-  </div>
-  <div class="form-group">
-    <label for="domruKey">Номер ключа</label>
-    <input
-      type="number"
-      class="form-control"
-      id="domruKey"
-      placeholder="Описание"
-      formControlName="domruKey"
-    >
-  </div>
-  <div class="form-group form-check">
-    <input
-      type="checkbox"
-      class="form-check-input"
-      id="access"
-      formControlName="access"
-    >
-    <label class="form-check-label" for="access">Есть доступ?</label>
-  </div>
+
   <div class="form-group">
     <input
       type="number"

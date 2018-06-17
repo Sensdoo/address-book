@@ -18,6 +18,6 @@ export class LoginService {
 
   getUserByEmail(email: string): Observable<User[]> {
     const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
-    return this.api.get(this.addition + `?email=${email}`);
+    return this.api.get(this.addition + `?email=${email}`, null, headers);
   }
 }

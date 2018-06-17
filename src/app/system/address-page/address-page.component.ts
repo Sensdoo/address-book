@@ -6,6 +6,9 @@ import { Entrance } from '../../entities/entrance.entity';
 import {User} from '../../entities/user.entity';
 import {EntranceStorageService} from '../../shared/services/entrance-storage.service';
 import {EntranceService} from '../../shared/services/entrance.service';
+import {Street} from '../../entities/street.entity';
+import {Address} from '../../entities/address.entity';
+import {StreetService} from '../../shared/services/street.service';
 
 @Component({
   selector: 'app-address-page',
@@ -15,6 +18,8 @@ import {EntranceService} from '../../shared/services/entrance.service';
 export class AddressPageComponent implements OnInit {
 
   entrances: Entrance[];
+  street: Street;
+  address: Address;
   addressId: number;
   message = '';
   type = '';
@@ -24,6 +29,7 @@ export class AddressPageComponent implements OnInit {
   	private route: ActivatedRoute,
     private router: Router,
   	private addressService: AddressService,
+    private streetService: StreetService,
     private entranceService: EntranceService,
     private entranceStorage: EntranceStorageService
   ) { }
@@ -35,9 +41,17 @@ export class AddressPageComponent implements OnInit {
       .subscribe((params: Params) => {
         if (params['addressId']) {
           this.addressId = params['addressId'];
-          this.addressService.getAllEntrancesByAddressId(this.addressId)
+          this.addressService.getAddressAndAllHisEntrances(this.addressId)
             .subscribe((entrances: Entrance[]) => {
               this.entrances = entrances;
+            });
+          this.addressService.getAddressById(this.addressId)
+            .subscribe((address: Address) => {
+              this.address = address;
+              this.streetService.getStreetById(address['streetId'])
+                .subscribe((street: Street) => {
+                  this.street = street;
+                });
             });
         }
         if (params['successfully']) {

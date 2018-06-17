@@ -24,7 +24,18 @@ export class AddressService {
     return this.api.get(this.addition, params);
   }
 
-  getAllEntrancesByAddressId(id: number): Observable<Entrance[]> {
+  getAddressAndAllHisEntrances(id: number): Observable<Entrance[]> {
     return this.api.get( this.addition + id + '/entrances');
   }
+
+  getAddressById(id: number): Observable<Address> {
+    return this.api.get(this.addition + id);
+  }
+
+  getAddressByStreetId(streetId: string): Observable<Address> {
+    const params = new HttpParams()
+      .append('streetId', streetId);
+    return this.api.get(this.addition, params);
+  }
+
 }

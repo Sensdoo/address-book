@@ -16,6 +16,7 @@ export class SearchFormComponent implements OnInit {
 
   form: FormGroup;
   streets: Street[];
+  houses = [];
   message: string;
   type: string;
 
@@ -33,27 +34,40 @@ export class SearchFormComponent implements OnInit {
 
     this.form = new FormGroup({
       streetId: new FormControl(null, [Validators.required]),
-      house: new FormControl(null, [Validators.required]),
-      building: new FormControl(1, [Validators.required]),
+      house: new FormControl(null, []),
+      building: new FormControl(null, []),
       entrance: new FormControl({value: '', disabled: true}, [])
     });
   }
 
   onSubmit() {
     const data = this.form.value;
-    // if (!(data.streetId || data.house || data.building)) { return; }
-    this.addressService.getAddressId(data.streetId, data.house, data.building)
-      .subscribe((address: Address[]) => {
-      if (address.length) {
-          this.router.navigate(['/address-page'], {
-            queryParams: {
-              'addressId': address[0]['id']
-            }
-          });
-      } else {
-        this.showMessage('danger', 'Адрес не найден!');
-      }
-    });
+    if (data.house !== null && data.building !== null) {
+      console.log('1', data.streetId, data.house, data.building);
+      this.addressService.getAddressId(data.streetId, data.house, data.building)
+        .subscribe((address: Address[]) => {
+          if (address.length) {
+            this.router.navigate(['/address-page'], {
+              queryParams: {
+                'addressId': address[0]['id']
+              }
+            });
+          } else {
+            this.showMessage('danger', 'Адрес не найден!');
+          }
+        });
+    } else if (data.house !== null && data.building === null) {
+      console.log('2', data.streetId, data.house, data.building);
+    } else if (data.house === null && data.building === null) {
+      console.log('3', data.streetId, data.house, data.building);
+        this.router.navigate(['/middle-result'], {
+          queryParams: {
+            'streetId': data['streetId']
+          }
+        });
+    } else {
+      return;
+    }
   }
 
   showMessage(type: string, message: string) {

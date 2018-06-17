@@ -20,15 +20,44 @@
   	>
   	  <option
   	    *ngFor="let street of streets"
-  	    value="{{ street.id }}">{{ street.name }}</option>
-	</select>
-	<div
-	  class="alert alert-danger"
-	  *ngIf="form.get('streetId').invalid && form.get('streetId').touched"
-	>
-	  Улица не выбрана
-	</div>
+  	    value="{{ street.id }}"
+      >
+        {{ street.name }}
+      </option>
+	  </select>
+	  <div
+	    class="alert alert-danger"
+	    *ngIf="form.get('streetId').invalid && form.get('streetId').touched"
+	  >
+	    Улица не выбрана
+	  </div>
   </div>
+
+  <!--<div-->
+    <!--class="form-group"-->
+    <!--[ngClass]="{'has-error': form.get('houses').invalid && form.get('houses').touched}"-->
+  <!--&gt;-->
+    <!--<label for="houses">Дом:</label>-->
+    <!--<select-->
+      <!--class="form-control"-->
+      <!--id="houses"-->
+      <!--formControlName="streetId"-->
+      <!--(change)="onChange($event)"-->
+    <!--&gt;-->
+      <!--<option-->
+        <!--*ngFor="let house of houses"-->
+        <!--value="{{ house }}"-->
+      <!--&gt;-->
+        <!--{{ house }}-->
+      <!--</option>-->
+    <!--</select>-->
+    <!--<div-->
+      <!--class="alert alert-danger"-->
+      <!--*ngIf="form.get('houses').invalid && form.get('houses').touched"-->
+    <!--&gt;-->
+      <!--Дом не выбрана-->
+    <!--</div>-->
+  <!--</div>-->
 
   <div
     class="form-group"

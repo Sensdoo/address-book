@@ -1,3 +1,6 @@
+<div *ngIf="street">
+  <h5 style="text-align: center">{{ street['name'] }}, д.{{ address['house'] }}, к.{{ address['building'] }}</h5>
+</div>
 <div
   class="alert alert-{{ type }}"
   *ngIf="message"
@@ -16,9 +19,9 @@
           <td class="td-1 align-top">
             <span class="badge badge-secondary"
                   [ngClass]="{'badge-success': e.access == true}"
-                  style="font-size: 1.1rem"
+                  style="font-size: 1.1rem; padding-top: .35rem"
             >
-              {{ e.entranceNumber }}
+              {{ e['entranceNumber'] }}
             </span>
           </td>
           <td class="td-2">
@@ -26,23 +29,24 @@
               {{ e.description }}
             </div>
           </td>
-          <td class="td-1 align-top">
+          <td class="td-1-2 align-top">
             <button
               class="btn btn-primary btn-xs"
               (click)="editEntrance(e)"
-            >Изменить</button>
-            <button
-              *ngIf="user['role'] === 'admin'"
-              class="btn btn-danger btn-xs"
-              (click)="deleteEntrance(e.id)"
-              style="margin-top: .2rem"
-            >Удалить</button>
+            ><i class="fa fa-edit"> </i></button>
           </td>
         </tr>
         <tr>
-          <td class="td-1"><img src="../../../assets/svgs/si-glyph-key-2.svg" class="glyph-icon"/>{{ e.domruKey }}</td>
+          <td class="td-1"><img src="../../../assets/svgs/si-glyph-key-2.svg" class="glyph-icon"/>{{ e['domruKey'] }}</td>
           <td class="td-3">
-            редактировал: {{ e.lastUpdate }}, {{ e.edit }}
+            редактировал: {{ e['lastUpdate'] }}, {{ e['edit'] }}
+          </td>
+          <td class="td-1-2 align-top">
+            <button
+            *ngIf="user['role'] === 'admin'"
+            class="btn btn-danger btn-xs"
+            (click)="deleteEntrance(e['id'])"
+            ><i class="fa fa-trash"> </i></button>
           </td>
         </tr>
       </tbody>

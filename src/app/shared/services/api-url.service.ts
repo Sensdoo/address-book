@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ApiUrlService {
 
-  // private url = 'http://192.168.1.39:3000/';
+  // private url = 'http://192.168.1.46:3000/';
   private url = 'http://93.95.97.110:3000/';
   // private url = 'http://10.0.0.18:3000/';
   // private url = 'http://0.0.0.0:3000/';

@@ -8,22 +8,29 @@ table {
 }
 
 .td-1 {
-  width: 16%;
+  width: 15%;
+  font-size: .75rem;
+}
+
+.td-1-2 {
+  width: 4%;
   font-size: .75rem;
 }
 
 
 .td-2 {
-  width: 68%;
+  width: 80%;
 }
 
 .td-3 {
-  width: 82%;
+  width: 85%;
   font-size: .5rem;
   text-align: right;
 }
 
 .block {
+
+  width: 100%;
   border: 1px solid #cdcdcd;
   height: 27px;
   overflow: hidden;
@@ -37,8 +44,8 @@ table {
 }
 
 .btn-xs {
-  padding: 0.15rem 0.25rem;
-  font-size: 0.65rem;
+  padding: .2rem .25rem .075rem .4rem;
+  font-size: .85rem;
   border-radius: 0.2rem;
 }
 
